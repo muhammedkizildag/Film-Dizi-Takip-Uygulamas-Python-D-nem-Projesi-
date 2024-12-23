@@ -1,0 +1,11 @@
+{
+  "1" : {
+    "name" : "Yüzüklerin Efendisi",
+    "year" : 2003,
+    "type" : "Film",
+    "director" : "Peter Jackson",
+    "state" : "İzlendi",
+    "point" : 9.3,
+    "picPath" : "yuzuk.jpg"
+  }
+}
