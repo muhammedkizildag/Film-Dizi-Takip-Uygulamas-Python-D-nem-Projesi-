@@ -43,7 +43,7 @@ class FetchData():
 
 
 
-# print(FetchData("https://www.sinemalar.com/film/593/yuzuklerin-efendisi-3-kralin-donusu").pic)
+# print(FetchData("https://www.sinemalar.com/film/593/yuzuklerin-efendisi-3-kralin-donusu").picURL)
 
 
 

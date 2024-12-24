@@ -2,7 +2,6 @@ import customtkinter
 from tkinter import ttk
 import customtkinter as cTk
 
-from state import mainFrameState
 from views.addFormView import AddFormView
 from views.filmListView import FilmListView
 from views.style import font
@@ -41,12 +40,3 @@ class LeftMenuView(cTk.CTkFrame):
 
 
                 
-
-
-
-
-
-
-
-
-
