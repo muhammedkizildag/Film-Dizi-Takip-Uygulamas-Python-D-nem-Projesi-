@@ -1,11 +1,65 @@
 {
-  "1" : {
-    "name" : "Yüzüklerin Efendisi",
-    "year" : 2003,
-    "type" : "Film",
-    "director" : "Peter Jackson",
-    "state" : "İzlendi",
-    "point" : 9.3,
-    "picPath" : "yuzuk.jpg"
-  }
+    "0": {
+        "name": "YÃ¼zÃ¼klerin Efendisi: KralÄ±n DÃ¶nÃ¼ÅŸÃ¼",
+        "year": "2003",
+        "type": "Film",
+        "director": "\nPeter Jackson\n",
+        "state": "Ä°zlendi",
+        "point": 3,
+        "picPath": "0.jpg"
+    },
+    "1": {
+        "name": "Kurtlar Vadisi: Filistin",
+        "year": "2011",
+        "type": "Film",
+        "director": "\nZübeyr Şaşmaz\n",
+        "state": "İzlendi",
+        "point": 3,
+        "picPath": "1.jpg"
+    },
+    "2": {
+        "name": "Arabalar",
+        "year": "2006",
+        "type": "Film",
+        "director": "\nJohn Lasseter\n                                        ,                                                                                                                     Joe Ranft\n",
+        "state": "İzlendi",
+        "point": 3,
+        "picPath": "2.jpg"
+    },
+    "3": {
+        "name": "Matrix",
+        "year": "1999",
+        "type": "Film",
+        "director": "\nLilly Wachowski\n                                        ,                                                                                                                     Lana Wachowski\n",
+        "state": "İzlendi",
+        "point": 3,
+        "picPath": "3.jpg"
+    },
+    "4": {
+        "name": "Bıçak Sırtı",
+        "year": "1982",
+        "type": "Film",
+        "director": "\nRidley Scott\n",
+        "state": "İzlendi",
+        "point": 3,
+        "picPath": "4.jpg"
+    },
+    "5": {
+        "name": "Dehşet Kapanı",
+        "year": "2024",
+        "type": "Film",
+        "director": "\nMitchell Altieri\n",
+        "state": "İzlendi",
+        "point": 0,
+        "picPath": "5.jpg"
+    },
+    "6": {
+        "name": "Zihin Oyunları",
+        "year": "2011",
+        "type": "Film",
+        "director": "\nTrey Nelson\n",
+        "state": "İzlenecek",
+        "point": 3,
+        "picPath": "6.jpg"
+    }
 }

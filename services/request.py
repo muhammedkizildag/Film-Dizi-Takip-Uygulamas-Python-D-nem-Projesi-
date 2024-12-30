@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 from io import BytesIO
+import re
 
 
 
@@ -30,7 +31,6 @@ class SearchData():
 class FetchData():
 
     def __init__(self, URL):
-        print("run")
         response = requests.get(URL)
         content = BeautifulSoup(response.content, "html.parser")
 
@@ -42,7 +42,7 @@ class FetchData():
                 if e.find(class_="label-title").text == "Yönetmen:":
                     self.result["director"] = e.find(class_="label").text
                 elif e.find(class_="label-title").text == "Yapımı:":
-                    self.result["year"] = e.find("a").text
+                    self.result["year"] = re.findall(r'\b(?:19|20)\d{2}\b', e.get_text("/", strip=True))[0]
             except:
                 pass
 

@@ -1,40 +1,32 @@
-import tkinter as tk
-from tkinter import ttk
 import customtkinter as cTk
-from PIL import Image, ImageTk, ImageDraw
+from PIL import Image
 
 from services.database import Database
-from views.filmView import FilmView
+from views.addFormView import AddFormView
+from views.filmCard import FilmCard
 
 
 class FilmListView(cTk.CTkScrollableFrame):
     def __init__(self, master, **kwargs):
         super().__init__(master,width=960, height=500, bg_color="#101014", fg_color="#101014",**kwargs)
 
-        for e in Database().list:
-            FilmView(self, filmModel=e).grid()
+        lastIndex = 0
+        columns = 4
+        for index, e in enumerate(Database().list):
+            row = index // columns
+            column = index % columns
+            FilmCard(self, filmModel=e).grid(row=row, column=column, padx=25, pady=25)
+            lastIndex = index
 
+        lastIndex += 1
 
-    def _image(self, path):
-        width = 200
-        heigth = 300
-        image = Image.open(path).convert("RGBA")
-        image = image.resize((width, heigth))
+        addFilmLabel = cTk.CTkLabel(self, text="", width=160, height=240, cursor="hand2",image=cTk.CTkImage(Image.open("./database/pics/addFilmButton.png"), size=(160, 240)))
+        addFilmLabel.grid(row= lastIndex // columns, column=lastIndex % columns, padx=25, pady=25)
+        addFilmLabel.bind("<Button-1>", self.updateState)
 
-        mask = Image.new("L", (width, heigth), 0)
-        draw = ImageDraw.Draw(mask)
+    def updateState(self, *args):
+        for e in self.master.master.master.master.children["!ctkframe"].winfo_children():
+            e.destroy()
 
-
-        draw.rounded_rectangle((0, 0, width, heigth), radius=6, fill=255)
-
-
-        _image = Image.new("RGBA", (width, heigth))
-        _image.paste(image, (0, 0), mask=mask)
-
-        return ImageTk.PhotoImage(_image)
-
-
-
-
-
+        AddFormView(self.master.master.master.master.children["!ctkframe"]).place(x=0, y=0)
 
