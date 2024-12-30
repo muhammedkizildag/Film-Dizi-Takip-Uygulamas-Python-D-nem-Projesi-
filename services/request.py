@@ -26,8 +26,6 @@ class SearchData():
             self.results.append(dict)
 
 
-
-
 class FetchData():
 
     def __init__(self, URL):
@@ -40,7 +38,7 @@ class FetchData():
         for e in _info:
             try:
                 if e.find(class_="label-title").text == "Yönetmen:":
-                    self.result["director"] = e.find(class_="label").text
+                    self.result["director"] = e.find(class_="label").get_text(strip=True)
                 elif e.find(class_="label-title").text == "Yapımı:":
                     self.result["year"] = re.findall(r'\b(?:19|20)\d{2}\b', e.get_text("/", strip=True))[0]
             except:
@@ -48,13 +46,10 @@ class FetchData():
 
 
         self.result["name"] = content.find("h1").text
-        # self.result["year"] = int(_info[6].find("a").text)
-        # self.result["director"] = _info[4].find("a").text
 
         _showPosterTpl = BeautifulSoup(content.find(id="showPosterTpl").text, "html.parser")
         picURL = _showPosterTpl.find(class_="poster").get("src")
 
         self.pic = BytesIO(requests.get(picURL).content)
 
-# print(FetchData("https://www.sinemalar.com/film/593/yuzuklerin-efendisi-3-kralin-donusu").picURL)
 

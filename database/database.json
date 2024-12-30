@@ -1,10 +1,10 @@
 {
     "0": {
-        "name": "YÃ¼zÃ¼klerin Efendisi: KralÄ±n DÃ¶nÃ¼ÅŸÃ¼",
+        "name": "Yüzüklerin Efendisi: Kralın Dönüşü",
         "year": "2003",
         "type": "Film",
-        "director": "\nPeter Jackson\n",
-        "state": "Ä°zlendi",
+        "director": "Peter Jackson",
+        "state": "İzlendi",
         "point": 3,
         "picPath": "0.jpg"
     },
@@ -12,7 +12,7 @@
         "name": "Kurtlar Vadisi: Filistin",
         "year": "2011",
         "type": "Film",
-        "director": "\nZübeyr Şaşmaz\n",
+        "director": "Zübeyr Şaşmaz",
         "state": "İzlendi",
         "point": 3,
         "picPath": "1.jpg"
@@ -21,7 +21,7 @@
         "name": "Arabalar",
         "year": "2006",
         "type": "Film",
-        "director": "\nJohn Lasseter\n                                        ,                                                                                                                     Joe Ranft\n",
+        "director": "John Lasseter,Joe Ranft",
         "state": "İzlendi",
         "point": 3,
         "picPath": "2.jpg"
@@ -30,7 +30,7 @@
         "name": "Matrix",
         "year": "1999",
         "type": "Film",
-        "director": "\nLilly Wachowski\n                                        ,                                                                                                                     Lana Wachowski\n",
+        "director": "Lilly Wachowski,Lana Wachowski",
         "state": "İzlendi",
         "point": 3,
         "picPath": "3.jpg"
@@ -39,7 +39,7 @@
         "name": "Bıçak Sırtı",
         "year": "1982",
         "type": "Film",
-        "director": "\nRidley Scott\n",
+        "director": "Ridley Scott",
         "state": "İzlendi",
         "point": 3,
         "picPath": "4.jpg"
@@ -48,18 +48,9 @@
         "name": "Dehşet Kapanı",
         "year": "2024",
         "type": "Film",
-        "director": "\nMitchell Altieri\n",
+        "director": "Mitchell Altieri",
         "state": "İzlendi",
         "point": 0,
         "picPath": "5.jpg"
-    },
-    "6": {
-        "name": "Zihin Oyunları",
-        "year": "2011",
-        "type": "Film",
-        "director": "\nTrey Nelson\n",
-        "state": "İzlenecek",
-        "point": 3,
-        "picPath": "6.jpg"
     }
 }

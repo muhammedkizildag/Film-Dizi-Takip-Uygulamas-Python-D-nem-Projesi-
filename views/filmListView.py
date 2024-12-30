@@ -15,13 +15,13 @@ class FilmListView(cTk.CTkScrollableFrame):
         for index, e in enumerate(Database().list):
             row = index // columns
             column = index % columns
-            FilmCard(self, filmModel=e).grid(row=row, column=column, padx=25, pady=25)
+            FilmCard(self, filmModel=e).grid(row=row, column=column, padx=25, pady=0)
             lastIndex = index
 
         lastIndex += 1
 
-        addFilmLabel = cTk.CTkLabel(self, text="", width=160, height=240, cursor="hand2",image=cTk.CTkImage(Image.open("./database/pics/addFilmButton.png"), size=(160, 240)))
-        addFilmLabel.grid(row= lastIndex // columns, column=lastIndex % columns, padx=25, pady=25)
+        addFilmLabel = cTk.CTkLabel(self, text="", width=160, height=360, cursor="hand2",image=cTk.CTkImage(Image.open("./database/pics/addFilmButton.png"), size=(160, 240)), anchor="n")
+        addFilmLabel.grid(row= lastIndex // columns, column=lastIndex % columns, padx=25, pady=0)
         addFilmLabel.bind("<Button-1>", self.updateState)
 
     def updateState(self, *args):
