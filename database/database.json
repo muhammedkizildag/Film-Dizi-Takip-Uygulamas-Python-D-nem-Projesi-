@@ -1,56 +1,82 @@
 {
-    "0": {
-        "name": "Yüzüklerin Efendisi: Kralın Dönüşü",
-        "year": "2003",
-        "type": "Film",
-        "director": "Peter Jackson",
-        "state": "İzlendi",
-        "point": 3,
-        "picPath": "0.jpg"
-    },
-    "1": {
-        "name": "Kurtlar Vadisi: Filistin",
-        "year": "2011",
-        "type": "Film",
-        "director": "Zübeyr Şaşmaz",
-        "state": "İzlendi",
-        "point": 3,
-        "picPath": "1.jpg"
-    },
-    "2": {
-        "name": "Arabalar",
-        "year": "2006",
-        "type": "Film",
-        "director": "John Lasseter,Joe Ranft",
-        "state": "İzlendi",
-        "point": 3,
-        "picPath": "2.jpg"
-    },
     "3": {
         "name": "Matrix",
         "year": "1999",
         "type": "Film",
         "director": "Lilly Wachowski,Lana Wachowski",
         "state": "İzlendi",
-        "point": 3,
+        "point": 5,
+        "note": "gd\n\n\n",
         "picPath": "3.jpg"
     },
-    "4": {
+    "8": {
+        "name": "Yıldızlararası",
+        "year": "2014",
+        "type": "Film",
+        "director": "Christopher Nolan",
+        "state": "İzlenecek",
+        "point": 4,
+        "note": "\n\n",
+        "picPath": "8.jpg"
+    },
+    "9": {
+        "name": "Kurtlar Vadisi",
+        "year": "2003",
+        "type": "Dizi",
+        "director": "Mustafa Şevki Doğan,Osman Sınav",
+        "state": "İzleniyor",
+        "point": 0,
+        "note": "asfasf\n",
+        "picPath": "9.jpg"
+    },
+    "10": {
         "name": "Bıçak Sırtı",
         "year": "1982",
         "type": "Film",
         "director": "Ridley Scott",
+        "state": "İzleniyor",
+        "point": 3,
+        "note": "\n",
+        "picPath": "10.jpg"
+    },
+    "11": {
+        "name": "Ölümlü Dünya 2",
+        "year": "2023",
+        "type": "Film",
+        "director": "Ali Atay",
+        "state": "İzlenecek",
+        "point": 4,
+        "note": "\n",
+        "picPath": "11.jpg"
+    },
+    "12": {
+        "name": "Behzat Ç.",
+        "year": "2019",
+        "type": "Dizi",
+        "director": "Serdar Akar",
+        "state": "İzlenecek",
+        "point": 3,
+        "note": "\n\n",
+        "picPath": "12.jpg"
+    },
+    "13": {
+        "name": "Delibal",
+        "year": "2015",
+        "type": "Film",
+        "director": "Ali Bilgin",
+        "state": "İzlenecek",
+        "point": 0,
+        "note": "\n",
+        "picPath": "13.jpg"
+    },
+    "14": {
+        "name": "The Matrix Reloaded",
+        "year": "2003",
+        "type": "Film",
+        "director": "Lilly Wachowski,Lana Wachowski",
         "state": "İzlendi",
         "point": 3,
-        "picPath": "4.jpg"
-    },
-    "5": {
-        "name": "Dehşet Kapanı",
-        "year": "2024",
-        "type": "Film",
-        "director": "Mitchell Altieri",
-        "state": "İzlendi",
-        "point": 0,
-        "picPath": "5.jpg"
+        "note": "\n",
+        "picPath": "14.jpg"
     }
 }

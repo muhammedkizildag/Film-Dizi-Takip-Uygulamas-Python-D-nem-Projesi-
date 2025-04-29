@@ -15,7 +15,7 @@ class FilmListView(cTk.CTkScrollableFrame):
         for index, e in enumerate(Database().list):
             row = index // columns
             column = index % columns
-            FilmCard(self, filmModel=e).grid(row=row, column=column, padx=25, pady=0)
+            FilmCard(self, filmModel=e, page="list").grid(row=row, column=column, padx=25, pady=0)
             lastIndex = index
 
         lastIndex += 1

@@ -10,39 +10,50 @@ from services.database import Database
 from services.request import SearchData, FetchData
 
 
-class AddFormView(cTk.CTkFrame):
+class EditFormView(cTk.CTkFrame):
 
-    def __init__(self, master, **kwargs):
+    def __init__(self, master, filmModel,**kwargs):
         super().__init__(master, width=960, height=500, bg_color="#101014", fg_color="#101014", **kwargs)
 
+        self.id = filmModel.id
+        self.picPath = filmModel.picPath
+
         font = ("Roboto", 16)
-        self.nameVariable = tk.StringVar()
-        self.typeVariable = cTk.StringVar(value="Film")
-        self.stateVariable = cTk.StringVar(value="İzlendi")
-        self.directorVariable = cTk.StringVar()
-        self.yearVariable = cTk.StringVar()
-        self.pointVariable = cTk.IntVar(value=0)
+        self.nameVariable = tk.StringVar(value=filmModel.name)
+        self.typeVariable = cTk.StringVar(value=filmModel.type)
+        self.stateVariable = cTk.StringVar(value=filmModel.state)
+        self.directorVariable = cTk.StringVar(value=filmModel.director)
+        self.yearVariable = cTk.StringVar(value=filmModel.year)
+        self.pointVariable = cTk.IntVar(value=filmModel.point)
 
         self.posterBytesIO = BytesIO()
+        Image.open(f"./database/pics/{filmModel.id}.jpg").save(self.posterBytesIO, format="JPEG")
 
-        nameLabel = cTk.CTkLabel(self,text="Ad" ,height=40, text_color="white", font=font)
+        nameLabel = cTk.CTkLabel(self, text="Ad", height=40, text_color="white", font=font)
         nameLabel.place(x=10, y=0)
         nameEntry = nameEntryFrame(self)
         nameEntry.place(x=10, y=40)
 
         typeLabel = cTk.CTkLabel(self, text="Tür", height=40, text_color="white", font=font)
         typeLabel.place(x=10, y=100)
-        typeSegmentedButton = cTk.CTkSegmentedButton(self, height=40, values=["Film", "Dizi"], variable=self.typeVariable,fg_color="#101014", font=font, selected_color="#343437", unselected_color="#101014", unselected_hover_color="#343437", selected_hover_color="#343437")
+        typeSegmentedButton = cTk.CTkSegmentedButton(self, height=40, values=["Film", "Dizi"],
+                                                     variable=self.typeVariable, fg_color="#101014", font=font,
+                                                     selected_color="#343437", unselected_color="#101014",
+                                                     unselected_hover_color="#343437", selected_hover_color="#343437")
         typeSegmentedButton.place(x=10, y=140)
 
         stateLabel = cTk.CTkLabel(self, text="Durum", height=40, text_color="white", font=font)
-        stateLabel.place(x= 120, y=100)
-        stateSegmentedButton = cTk.CTkSegmentedButton(self, height=40, values=["İzlendi", "İzleniyor", "İzlenecek"], variable=self.stateVariable,fg_color="#101014", font=font, selected_color="#343437", unselected_color="#101014", unselected_hover_color="#343437", selected_hover_color="#343437")
+        stateLabel.place(x=120, y=100)
+        stateSegmentedButton = cTk.CTkSegmentedButton(self, height=40, values=["İzlendi", "İzleniyor", "İzlenecek"],
+                                                      variable=self.stateVariable, fg_color="#101014", font=font,
+                                                      selected_color="#343437", unselected_color="#101014",
+                                                      unselected_hover_color="#343437", selected_hover_color="#343437")
         stateSegmentedButton.place(x=120, y=140)
 
         directorLabel = cTk.CTkLabel(self, text="Yönetmen", height=40, text_color="white", font=font)
         directorLabel.place(x=10, y=200)
-        self.directorEntry = cTk.CTkEntry(self, height=40, width=250, corner_radius=6, fg_color="#101014", text_color="white", textvariable=self.directorVariable)
+        self.directorEntry = cTk.CTkEntry(self, height=40, width=250, corner_radius=6, fg_color="#101014",
+                                          text_color="white", textvariable=self.directorVariable)
         self.directorEntry.place(x=10, y=240)
 
         yearLabel = cTk.CTkLabel(self, text="Yıl", height=40, text_color="white", font=font)
@@ -53,27 +64,30 @@ class AddFormView(cTk.CTkFrame):
         self.PointFrame = StarPointFrame(self)
         self.PointFrame.place(x=700, y=0)
 
-        self.posterLabel = cTk.CTkLabel(self, text="", width=160, height=240, corner_radius=6, text_color="white")
+        self.posterLabel = cTk.CTkLabel(self, text="", width=160, height=240, corner_radius=6, text_color="white", )
         self.posterLabel.place(x=700, y=100)
 
         self.noteLabel = cTk.CTkLabel(self, text="Not", height=40, text_color="white", font=font)
         self.noteLabel.place(x=10, y=340)
         self.noteTextBox = cTk.CTkTextbox(self, height=120, width=250, corner_radius=6, fg_color="#101014", text_color="white", border_width=2, wrap="word")
         self.noteTextBox.place(x=10, y=380)
+        self.noteTextBox.insert("0.0", filmModel.note)
 
-        self.saveButton = cTk.CTkButton(self, text="Kaydet", width=90, height=40, fg_color="#101014", command= self.save, border_color="red", hover_color="red", border_width=2)
-        self.saveButton.place(x=730, y=380)
+        self.updateButton = cTk.CTkButton(self, text="Güncelle", width=90, height=40, fg_color="#101014", command=self._update,
+                                        border_color="red", hover_color="red", border_width=2)
+        self.updateButton.place(x=730, y=380)
         nameEntry.lift()
 
-    def save(self):
+    def _update(self):
         x = False
-
+        print("a")
         name = self.nameVariable.get()
         year = self.yearVariable.get()
         type = self.typeVariable.get()
         director = self.directorVariable.get()
         state = self.stateVariable.get()
         point = self.pointVariable.get()
+        note = self.noteTextBox.get("0.0", "end")
 
         if name == "":
             self.children["!nameentryframe"].children["!ctkentry"].configure(border_color="red")
@@ -87,36 +101,29 @@ class AddFormView(cTk.CTkFrame):
             x = True
 
         if point == 0:
-             self.PointFrame.configure(border_color="red")
+            self.PointFrame.configure(border_color="red")
 
         if not x:
-            Database().save(name=name, year=year, type=type, director=director, state=state, point=point,note=self.noteTextBox.get("0.0", "end") ,pic=self.posterBytesIO)
-            self.nameVariable.set(value="")
-            self.yearVariable.set(value="")
-            self.typeVariable.set("Film")
-            self.directorVariable.set("")
-            self.stateVariable.set("İzlendi")
-            self.pointVariable.set(0)
-            self.noteTextBox.delete("0.0", "end")
-            self.posterBytesIO = BytesIO()
-            self.posterLabel.configure(image=None)
-
+            Database().update(FilmModel(id=self.id, name=name, year=year, type=type, director=director, state=state, point=point, picPath=self.picPath, note=note))
 
 
 class nameEntryFrame(cTk.CTkFrame):
 
     def __init__(self, master, **kwargs):
         super().__init__(master, width=300, height=40, fg_color="#101014", **kwargs)
-        self.nameToggleVariable = cTk.StringVar(value="on")
+        self.nameToggleVariable = cTk.StringVar(value="off")
         self.master.nameVariable.trace("w", self.showSearchDataThread)
 
-        self.nameEntry = cTk.CTkEntry(self, width=250, height=40, corner_radius=6, fg_color="#101014", text_color="white", textvariable=self.master.nameVariable)
+        self.nameEntry = cTk.CTkEntry(self, width=250, height=40, corner_radius=6, fg_color="#101014",
+                                      text_color="white", textvariable=self.master.nameVariable)
         self.nameEntry.place(x=0, y=0)
 
-        self.nameToggle = cTk.CTkSwitch(self, text="", variable=self.nameToggleVariable, onvalue="on", offvalue="off", command=self.toggleEvent)
-        self.nameToggle.place(x= 250, y=10)
+        self.nameToggle = cTk.CTkSwitch(self, text="", variable=self.nameToggleVariable, onvalue="on", offvalue="off",
+                                        command=self.toggleEvent)
+        self.nameToggle.place(x=250, y=10)
 
-        self.searchFrame = cTk.CTkFrame(self, width=300, height=100, bg_color="transparent", fg_color="white", corner_radius=6)
+        self.searchFrame = cTk.CTkFrame(self, width=300, height=100, bg_color="transparent", fg_color="white",
+                                        corner_radius=6)
         self.searchFrame.place(x=0, y=50)
 
     def showSearchData(self, *args):
@@ -133,21 +140,22 @@ class nameEntryFrame(cTk.CTkFrame):
                         img = Image.open(e["Pic"])
                         img.resize((36, 54))
 
-                        itemImg = cTk.CTkLabel(item, width=36, height=54 ,text="",image=cTk.CTkImage(img, size=(36, 54)), cursor="hand2")
+                        itemImg = cTk.CTkLabel(item, width=36, height=54, text="",
+                                               image=cTk.CTkImage(img, size=(36, 54)), cursor="hand2")
                         itemImg.place(x=0, y=0)
-                        nameLabel = cTk.CTkLabel(item, height=54, width=250,text=e["Name"], bg_color="white", text_color="black", cursor="hand2")
+                        nameLabel = cTk.CTkLabel(item, height=54, width=250, text=e["Name"], bg_color="white",
+                                                 text_color="black", cursor="hand2")
                         nameLabel.place(x=40, y=0)
                         y += 54
 
                         item.bind("<Button-1>", lambda event, URL=e["URL"], _type=e["Type"]: self.getData(URL, _type))
-                        itemImg.bind("<Button-1>", lambda event, URL=e["URL"], _type=e["Type"]: self.getData(URL, _type))
-                        nameLabel.bind("<Button-1>", lambda event, URL=e["URL"], _type=e["Type"]: self.getData(URL, _type))
-
-
-
+                        itemImg.bind("<Button-1>",
+                                     lambda event, URL=e["URL"], _type=e["Type"]: self.getData(URL, _type))
+                        nameLabel.bind("<Button-1>",
+                                       lambda event, URL=e["URL"], _type=e["Type"]: self.getData(URL, _type))
 
                     self.searchFrame.configure(height=y)
-                    self.configure(height=y+50)
+                    self.configure(height=y + 50)
 
             else:
                 self.searchFrame.configure(height=0)
@@ -168,7 +176,7 @@ class nameEntryFrame(cTk.CTkFrame):
         _image.resize((160, 240))
 
         self.master.posterBytesIO = data.pic
-        self.master.posterLabel.configure(image= cTk.CTkImage(_image, size=(160, 240)))
+        self.master.posterLabel.configure(image=cTk.CTkImage(_image, size=(160, 240)))
         self.nameToggleVariable.set("off")
         self.searchFrame.configure(height=0)
         self.configure(height=40)
@@ -182,35 +190,38 @@ class nameEntryFrame(cTk.CTkFrame):
 
 
 class StarPointFrame(cTk.CTkFrame):
-    
+
     def __init__(self, master):
         super().__init__(master, height=25, width=125, fg_color="transparent")
 
-        self.starImgOutlined = cTk.CTkImage(Image.open("./database/pics/star-outlined.png"), size=(20,20))
+        self.starImgOutlined = cTk.CTkImage(Image.open("./database/pics/star-outlined.png"), size=(20, 20))
         self.starImg = cTk.CTkImage(Image.open("./database/pics/star.png"), size=(20, 20))
 
-        self.starLabels = [cTk.CTkLabel(self, image=self.starImgOutlined, width=20, height=20, text="", cursor="hand2") for x in range(5)]
+        self.starLabels = [cTk.CTkLabel(self, image=self.starImg, width=20, height=20, text="", cursor="hand2")
+                           for x in range(self.master.pointVariable.get())]
+
+        self.starLabels += [cTk.CTkLabel(self, image=self.starImgOutlined, width=20, height=20, text="", cursor="hand2")
+                           for x in range(5 - self.master.pointVariable.get())]
 
         for index, item in enumerate(self.starLabels):
-            item.place(y=0, x=index*25)
+            item.place(y=0, x=index * 25)
             item.bind("<Enter>", lambda e, _index=index: self.enterEvent(_index))
             item.bind("<Leave>", self.leaveEvent)
             item.bind("<Button-1>", lambda e, _index=index: self.clickEvent(_index))
 
     def enterEvent(self, index):
 
-        for e in self.starLabels[:index+1]:
+        for e in self.starLabels[:index + 1]:
             e.configure(image=self.starImg)
 
     def leaveEvent(self, *args):
         for e in self.starLabels[self.master.pointVariable.get():]:
             e.configure(image=self.starImgOutlined)
 
-
     def clickEvent(self, index):
-        self.master.pointVariable.set(index+1)
+        self.master.pointVariable.set(index + 1)
 
-        for e in self.starLabels[:index+1]:
+        for e in self.starLabels[:index + 1]:
             e.configure(image=self.starImg)
 
         for e in self.starLabels[self.master.pointVariable.get():]:
