@@ -59,24 +59,4 @@ class FetchData():
 
 
 
-        # _info = content.find_all(class_="info-group")
-        # self.result = {}
-        #
-        # for e in _info:
-        #     try:
-        #         if e.find(class_="label-title").text == "Yönetmen:":
-        #             self.result["director"] = e.find(class_="label").get_text(strip=True)
-        #         elif e.find(class_="label-title").text == "Yapımı:":
-        #             self.result["year"] = re.findall(r'\b(?:19|20)\d{2}\b', e.get_text("/", strip=True))[0]
-        #     except:
-        #         pass
-        #
-        #
-        # self.result["name"] = content.find("h1").text
-        #
-        # _showPosterTpl = BeautifulSoup(content.find(id="showPosterTpl").text, "html.parser")
-        # picURL = _showPosterTpl.find(class_="poster").get("src")
-        #
-        # self.pic = BytesIO(requests.get(picURL).content)
-
-
+        
